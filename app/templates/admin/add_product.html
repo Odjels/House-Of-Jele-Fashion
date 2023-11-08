@@ -1,0 +1,66 @@
+{% extends 'admin/base.html' %}
+
+{% block title %}Add New Product{% endblock %}
+
+{% block content %}
+
+<div class="app-wrapper">
+	    
+    <div class="app-content pt-3 p-md-3 p-lg-4">
+        <div class="container-xl">
+
+    <div class="app-card app-card-settings shadow-sm p-4">
+        <h2 class="page-title">Add New Product</h2>
+        <form method="POST" action="{{ url_for('add_product') }}" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="product_name">Product Name:</label>
+                <input type="text" id="product_name" name="product_name" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="cost">Cost:</label>
+                <input type="text" id="cost" name="cost" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="short_description">Short Description:</label>
+                <textarea id="short_description" name="short_description" class="form-control" required></textarea>
+            </div>
+
+
+            <div class="form-group">
+                <label for="cover_photo">Cover Photo:</label>
+
+                <input type="file" id="cover_photo" name="cover_photo" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="long_description">Long Description:</label>
+                <textarea id="long_description" name="long_description" class="form-control" required></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="photo_1">Photo 1:</label>
+
+                <input type="file" id="photo_1" name="photo_1" class="form-control">
+            </div>
+            
+            <div class="form-group">
+                <label for="photo_2">Photo 2:</label>
+
+                <input type="file" id="photo_2" name="photo_2" class="form-control">
+            </div>
+            
+            <div class="form-group">
+                <label for="photo_3">Photo 3:</label>
+
+                <input type="file" id="photo_3" name="photo_3" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary">Add Product</button>
+        </form>
+    </div>
+</div>
+</div>
+    
+
+    
+{% endblock %}
+

@@ -1,0 +1,105 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
+
+<div class="app-wrapper">
+
+<div class="app-content pt-3 p-md-3 p-lg-4">
+    <div class="container-xl">
+        
+        <div class="row g-3 mb-4 align-items-center justify-content-between">
+            <div class="col-auto">
+                <h1 class="app-page-title mb-0">Orders</h1>
+            </div>
+            <div class="col-auto">
+                 <div class="page-utilities">
+                </div><!--//table-utilities-->
+            </div><!--//col-auto-->
+        </div><!--//row-->
+       
+        
+        <nav id="orders-table-tab" class="orders-table-tab app-nav-tabs nav shadow-sm flex-column flex-sm-row mb-4">
+            <a class="flex-sm-fill text-sm-center nav-link {% if selected_tab == 'all' %}active{% endif %}" href="{{ url_for('view_orders', status='all') }}">All</a>
+            <a class="flex-sm-fill text-sm-center nav-link {% if selected_tab == 'completed' %}active{% endif %}" href="{{ url_for('view_orders', status='completed') }}">Completed</a>
+            <a class="flex-sm-fill text-sm-center nav-link {% if selected_tab == 'Pending' %}active{% endif %}" href="{{ url_for('view_orders', status='Pending') }}">Pending</a>
+            <a class="flex-sm-fill text-sm-center nav-link {% if selected_tab == 'canceled' %}active{% endif %}" href="{{ url_for('view_orders', status='canceled') }}">Cancelled</a>
+        </nav>
+        
+        
+        <div class="tab-content" id="orders-table-tab-content">
+            <div class="tab-pane fade show active" id="orders-all" role="tabpanel" aria-labelledby="orders-all-tab">
+                <div class="app-card app-card-orders-table shadow-sm mb-5">
+                    <div class="app-card-body">
+                        <div class="table-responsive">
+                            <table class="table app-table-hover mb-0 text-left">
+                                <thead>
+                                    <tr>
+                                        <th class="cell">Date Ordered</th>
+                                        <th class="cell">Product Name</th>
+                                        <th class="cell">User Name</th>
+                                        <th class="cell">User Number</th>
+                                        <th class="cell">Status</th>
+                                        <th class="cell">Product Cost</th>
+                                        <th class="cell"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for order in orders %}
+                                    <tr>
+                                        <td class="cell">{{ order.date_ordered.strftime('%d %b, %Y %I:%M %p') }}</td>
+                                        <td class="cell"><span class="truncate">{{ order.product_name }}</span></td>
+                                        <td class="cell">{{ order.first_name }} </td>
+                                        <td class="cell">{{ order.phone }}</td>
+                                        {% if order.status == 'completed' %}
+                                                <td class="cell"><span class="badge bg-success">{{ order.status }}</span></td>
+                                            {% elif order.status == 'Pending' %}
+                                                <td class="cell"><span class="badge bg-warning">{{ order.status }}</span></td>
+                                            {% elif order.status == 'canceled' %}
+                                                <td class="cell"><span class="badge bg-danger">{{ order.status }}</span></td>
+                                            {% endif %}
+                                        
+                                        <td class="cell">${{ order.subtotal }}</td>
+                                        <td class="cell">
+                                            <a class="btn-sm app-btn-secondary" href="{{ url_for('view_order', order_id=order.id) }}">View</a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div><!--//table-responsive-->
+                       
+                    </div><!--//app-card-body-->		
+                </div><!--//app-card-->
+
+
+
+
+                
+                <nav class="app-pagination">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Next</a>
+                        </li>
+                    </ul>
+                </nav><!--//app-pagination-->
+                
+            </div><!--//tab-pane-->
+            
+    
+ 
+        
+        </div><!--//tab-content-->
+        
+        
+        
+    </div><!--//container-fluid-->
+</div><!--//app-content-->
+
+
+{% endblock %}

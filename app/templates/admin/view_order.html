@@ -1,0 +1,92 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
+
+<div class="app-wrapper">
+
+<div class="app-content pt-3 p-md-3 p-lg-4">
+    <div class="container-xl">
+
+        <div class="row g-3 mb-4 align-items-center justify-content-between">
+            <div class="col-auto">
+                <h1 class="app-page-title mb-0">Individual Order Details</h1>
+            </div>
+            </div>
+
+
+            <div class="app-card-body">
+                <form class="settings-form">
+                    <div class="mb-3">
+                        <label for="setting-input-1" class="form-label">First Name</label>
+                        <input type="text" class="form-control"name="first_name" value="{{ order.first_name }}" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="setting-input-2" class="form-label">Last Name</label>
+                        <input type="text" class="form-control"name="first_name" value="{{ order.last_name }}" readonly>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="setting-input-2" class="form-label">Country</label>
+                        <input type="text" class="form-control" name="country" value="{{ order.country }}" readonly>
+                    </div>
+
+
+                    <div class="mb-3">
+                        <label for="setting-input-2" class="form-label">Street Address</label>
+                        <input type="text" class="form-control" name="address_street" value="{{ order.address_street }}" readonly>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="setting-input-2" class="form-label">Appartment, Addtional Info</label>
+                        <input type="text" class="form-control" name="apartment" value="{{ order.apartment }}" readonly>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="setting-input-2" class="form-label">Town / City</label>
+                        <input type="text" class="form-control" name="town_city" value="{{ order.town_city }}" readonly>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="setting-input-2" class="form-label">Postal Code</label>
+                        <input type="text" class="form-control" name="postcode" value="{{ order.postcode }}" readonly>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="setting-input-2" class="form-label">Appartment, Addtional Info</label>
+                        <input type="text" class="form-control" name="apartment" value="{{ order.apartment }}" readonly>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="setting-input-2" class="form-label">Phone number</label>
+                        <input type="text" class="form-control" name="phone" value="{{ order.phone }}" readonly>
+                    </div>
+
+
+                    <div class="mb-3">
+                        <label for="setting-input-3" class="form-label">Email Address</label>
+                        <input type="email" class="form-control" name="email" value="{{ order.email }}" readonly>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="setting-input-2" class="form-label">Special Notes For delivery</label>
+                        <input type="text" class="form-control" name="order_notes" value="{{ order.note }}" placeholder="Notes about your order, e.g. special notes for delivery." readonly>
+                    </div>
+                </form>
+            </div><!--//app-card-body-->
+
+
+
+                <form method="POST" action="{{ url_for('view_order', order_id=order.id) }}" class="mt-4">
+                    <div class="form-check form-switch mb-3">
+                        <input class="form-check-input" type="checkbox" id="status-switch-completed" name="new_status" value="completed" {% if order.status == 'completed' %}checked{% endif %}>
+                        <label class="form-check-label" for="status-switch-completed">Completed</label>
+                    </div>
+                    <div class="form-check form-switch mb-3">
+                        <input class="form-check-input" type="checkbox" id="status-switch-canceled" name="new_status" value="canceled" {% if order.status == 'canceled' %}checked{% endif %}>
+                        <label class="form-check-label" for="status-switch-canceled">Canceled</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Update Status</button>
+                </form>
+            {% endblock %}
+        </div>
+        </div>
