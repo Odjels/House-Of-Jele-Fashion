@@ -20,6 +20,8 @@ app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
 # Set the database URI from the environment variable
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DB_URI')
+#postgres://hojpostgresql_user:GjalaI45Zv9lvoi4Y7Mr9Nm4nsKQCRQ2@dpg-cl65n9k72pts73frof30-a.oregon-postgres.render.com/hojpostgresql
+#app.config['SQLALCHEMY_DATABASE_URI'] = postgres://hojpostgresql_user:GjalaI45Zv9lvoi4Y7Mr9Nm4nsKQCRQ2@dpg-cl65n9k72pts73frof30-a.oregon-postgres.render.com/hojpostgresql
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 
