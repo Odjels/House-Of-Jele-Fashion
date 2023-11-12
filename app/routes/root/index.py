@@ -9,5 +9,6 @@ def home_page():
     # Fetch 8 products from the database
     per_page = 8
     products = Product.query.order_by(desc(Product.id)).limit(per_page).all()
+    # The limited number of products to be viewed on one page
 
     return render_template("root/index.html", products=products)
